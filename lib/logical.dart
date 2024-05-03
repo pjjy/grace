@@ -147,7 +147,7 @@ class _QuestreviewState extends State<Questreview> {
           'D. 10 units\n';
     } else if (widget.index == 7) {
       mainText =
-          '\n${widget.index + 1}. The sum of three consecutive odd numbers is 57. What is the smallest of these numbers?\n'
+          '\n${widget.questionNumber + 1}. The sum of three consecutive odd numbers is 57. What is the smallest of these numbers?\n'
           'A. 17\n'
           'B. 19\n'
           'C. 21\n'
@@ -446,16 +446,23 @@ class _QuestreviewState extends State<Questreview> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q--;
+                      print(widget.questionNumber);
+                      print(q);
                       if (widget.index > 0) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  // Questreview(index: widget.index)),
+                                  // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(15))),
                         );
+                      }
+                      if (widget.questionNumber == 0) {
+                        q = 14;
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -468,16 +475,23 @@ class _QuestreviewState extends State<Questreview> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (widget.index < 14) {
+                      var q = widget.questionNumber;
+                      q++;
+                      print(q);
+
+                      if (widget.index <= 14) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  // Questreview(index: widget.index)),
+                                  // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(15))),
                         );
+                      }
+                      if (widget.questionNumber == 14) {
+                        q = 0;
                       }
                     },
                     style: ElevatedButton.styleFrom(

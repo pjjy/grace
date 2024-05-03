@@ -230,7 +230,7 @@ class _QuestreviewState extends State<Questreview> {
                 child: Text(
                   mainText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25.0),
+                  style: const TextStyle(fontSize: 25.0),
                 ),
               ),
             ),
@@ -259,7 +259,7 @@ class _QuestreviewState extends State<Questreview> {
               ),
               if (showAdditionalText && widget.index == 0)
                 const Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
                       'A. Central Processing Unit\n\n',
@@ -442,6 +442,8 @@ class _QuestreviewState extends State<Questreview> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q--;
                       if (widget.index > 0) {
                         Navigator.pushReplacement(
                           context,
@@ -449,9 +451,12 @@ class _QuestreviewState extends State<Questreview> {
                               builder: (context) =>
                                   // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(15))),
                         );
+                      }
+                      if (widget.questionNumber == 0) {
+                        q = 14;
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -464,6 +469,10 @@ class _QuestreviewState extends State<Questreview> {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q++;
+                      print(widget.questionNumber);
+
                       if (widget.index <= 14) {
                         Navigator.pushReplacement(
                           context,
@@ -471,9 +480,12 @@ class _QuestreviewState extends State<Questreview> {
                               builder: (context) =>
                                   // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(15))),
                         );
+                      }
+                      if (widget.questionNumber == 14) {
+                        q = 0;
                       }
                     },
                     style: ElevatedButton.styleFrom(

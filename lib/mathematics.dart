@@ -541,16 +541,23 @@ class _QuestreviewState extends State<Questreview> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      if (widget.index > 0) {
+                      var q = widget.questionNumber;
+                      q--;
+                      print(widget.questionNumber);
+                      print(widget.index);
+                      if (widget.index >= 0) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  // Questreview(index: widget.index)),
+                                  // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(20))),
                         );
+                      }
+                      if (widget.questionNumber == 0) {
+                        q = 19;
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -563,16 +570,23 @@ class _QuestreviewState extends State<Questreview> {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q++;
+                      print(q);
+
                       if (widget.index <= 19) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  // Questreview(index: widget.index)),
+                                  // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(20))),
                         );
+                      }
+                      if (widget.questionNumber == 19) {
+                        q = 0;
                       }
                     },
                     style: ElevatedButton.styleFrom(

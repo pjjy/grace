@@ -423,14 +423,23 @@ class _QuestreviewState extends State<Questreview> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    if (widget.index > 0) {
+                    var q = widget.questionNumber;
+                    q--;
+                    print(widget.questionNumber);
+                    print(widget.index);
+                    if (widget.index >= 0) {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Questreview(
-                                questionNumber: widget.index,
-                                index: random.nextInt(10))),
+                            builder: (context) =>
+                                // Questreview(index: widget.index + 1)),
+                                Questreview(
+                                    questionNumber: q,
+                                    index: random.nextInt(10))),
                       );
+                    }
+                    if (widget.questionNumber == 0) {
+                      q = 9;
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -441,14 +450,23 @@ class _QuestreviewState extends State<Questreview> {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    var q = widget.questionNumber;
+                    q++;
+                    print(q);
+
                     if (widget.index <= 9) {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Questreview(
-                                questionNumber: widget.index,
-                                index: random.nextInt(10))),
+                            builder: (context) =>
+                                // Questreview(index: widget.index + 1)),
+                                Questreview(
+                                    questionNumber: q,
+                                    index: random.nextInt(10))),
                       );
+                    }
+                    if (widget.questionNumber == 9) {
+                      q = 0;
                     }
                   },
                   style: ElevatedButton.styleFrom(

@@ -446,16 +446,21 @@ class _QuestreviewState extends State<Questreview> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q--;
                       if (widget.index > 0) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  // Questreview(index: widget.index)),
+                                  // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(15))),
                         );
+                      }
+                      if (widget.questionNumber == 0) {
+                        q = 14;
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -468,16 +473,22 @@ class _QuestreviewState extends State<Questreview> {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q++;
+
                       if (widget.index <= 14) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  // Questreview(index: widget.index)),
+                                  // Questreview(index: widget.index + 1)),
                                   Questreview(
-                                      questionNumber: widget.index,
+                                      questionNumber: q,
                                       index: random.nextInt(15))),
                         );
+                      }
+                      if (widget.questionNumber == 14) {
+                        q = 0;
                       }
                     },
                     style: ElevatedButton.styleFrom(

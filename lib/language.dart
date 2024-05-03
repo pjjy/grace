@@ -128,68 +128,70 @@ class _QuestreviewState extends State<Questreview> {
     String mainText;
     if (widget.index == 0) {
       mainText =
-          '\n${widget.index + 1}. She___a beautiful smile that lights up the room and makes everyone feel happy.\n\n'
+          '\n${widget.questionNumber + 1}. She___a beautiful smile that lights up the room and makes everyone feel happy.\n\n'
           'A.    had\n'
           'B.     has\n'
           'C.   have\n'
           'D.     will\n';
     } else if (widget.index == 1) {
       mainText =
-          '\n${widget.index + 1}.  I am neither a morning person,___ do I possess the  patience to wait in long lines for my daily caffeine fix at a crowded coffee shop.\n\n'
+          '\n${widget.questionNumber + 1}.  I am neither a morning person,___ do I possess the  patience to wait in long lines for my daily caffeine fix at a crowded coffee shop.\n\n'
           'A.    or\n'
           'B. and \n'
           'C.  nor\n'
           'D.  but\n';
     } else if (widget.index == 2) {
       mainText =
-          '\n${widget.index + 1}. The size of a grain of sand is minuscule__________ the  vastness of a desert. .\n\n'
+          '\n${widget.questionNumber + 1}. The size of a grain of sand is minuscule__________ the  vastness of a desert. .\n\n'
           'A.              than\n'
           'B.    more than\n'
           'C.                   to\n'
           'D. compared to\n';
     } else if (widget.index == 3) {
       mainText =
-          '\n${widget.index + 1}. The cat jumped the table, knocking over a vase in the process.\n\n'
+          '\n${widget.questionNumber + 1}. The cat jumped the table, knocking over a vase in the process.\n\n'
           'A.  in\n'
           'B.  at\n'
           'C. on\n'
           'D. by\n';
     } else if (widget.index == 4) {
       mainText =
-          '\n${widget.index + 1}. Still, goats and_______ had been in North America for hundreds of years.\n\n'
+          '\n${widget.questionNumber + 1}. Still, goats and_______ had been in North America for hundreds of years.\n\n'
           'A.     sheep\n'
           'B.    sheeps\n'
           'C.         shep\n'
           'D.      sheves\n';
     } else if (widget.index == 5) {
       mainText =
-          '\n${widget.index + 1}. Ang alab ng puso ko ay ipaglaban ka.\n\n'
+          '\n${widget.questionNumber + 1}. Ang alab ng puso ko ay ipaglaban ka.\n\n'
           'A.        pighati\n'
           'B.            sakit\n'
           'C.  damdamin\n'
           'D.             poot\n';
     } else if (widget.index == 6) {
       mainText =
-          '\n ${widget.index + 1}. Kahit para bang pasan ko ang daigdig, hindi ako susuko."\n\n'
+          '\n ${widget.questionNumber + 1}. Kahit para bang pasan ko ang daigdig, hindi ako susuko."\n\n'
           'A.      dala-dala\n'
           'B.    mayaman\n'
           'C.            kuba   \n'
           'D.   problema \n';
     } else if (widget.index == 7) {
       mainText =
-          '\n${widget.index + 1}. Nang maglaon, ang kanyang busilak na puso ang naghatid sa kanya ng maayos na buhay.\n\n'
+          '\n${widget.questionNumber + 1}. Nang maglaon, ang kanyang busilak na puso ang naghatid sa kanya ng maayos na buhay.\n\n'
           'A.             mapula       \n'
           'B.            madugo  \n'
           'C.              malinis     \n'
           'D.   maramdamin\n';
     } else if (widget.index == 8) {
-      mainText = '\n\n${widget.index + 1}.  Defiled by his opponents.\n\n'
+      mainText =
+          '\n\n${widget.questionNumber + 1}.  Defiled by his opponents.\n\n'
           'A.        respected \n'
           'B.         tarnished \n'
           'C.         maligned\n'
           'D.         criticized\n';
     } else if (widget.index == 9) {
-      mainText = '\n${widget.index + 1}. Achievements were applauded\n\n'
+      mainText =
+          '\n${widget.questionNumber + 1}. Achievements were applauded\n\n'
           'A.      celebrated\n'
           'B.  reprimanded\n'
           'C.        censured\n'
@@ -379,14 +381,23 @@ class _QuestreviewState extends State<Questreview> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q--;
+                      print(widget.questionNumber);
+                      print(q);
                       if (widget.index > 0) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Questreview(
-                                  questionNumber: widget.index,
-                                  index: random.nextInt(10))),
+                              builder: (context) =>
+                                  // Questreview(index: widget.index + 1)),
+                                  Questreview(
+                                      questionNumber: q,
+                                      index: random.nextInt(10))),
                         );
+                      }
+                      if (widget.questionNumber == 0) {
+                        q = 9;
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -399,14 +410,23 @@ class _QuestreviewState extends State<Questreview> {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      var q = widget.questionNumber;
+                      q++;
+                      print(q);
+
                       if (widget.index <= 9) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Questreview(
-                                  questionNumber: widget.index,
-                                  index: random.nextInt(10))),
+                              builder: (context) =>
+                                  // Questreview(index: widget.index + 1)),
+                                  Questreview(
+                                      questionNumber: q,
+                                      index: random.nextInt(10))),
                         );
+                      }
+                      if (widget.questionNumber == 9) {
+                        q = 0;
                       }
                     },
                     style: ElevatedButton.styleFrom(
